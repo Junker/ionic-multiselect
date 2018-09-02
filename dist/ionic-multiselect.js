@@ -299,6 +299,8 @@ angular.module("ionic-multiselect", [])
 
         // Update scope.items checked attribute with scope.defaultValue
         scope.fetchCheckedDefaultItems = function() {
+          if (scope.defaultValue == undefined) return;
+            
           scope.value = [];
           if (scope.items) {
             var arrChecked = [];
@@ -317,24 +319,16 @@ angular.module("ionic-multiselect", [])
         scope.fetchCheckedDefaultItems();
 
         // Watch itemChecked property
-        scope.$watch(function(){
-          return scope.itemChecked;
-        }, scope.onCheckValueChanged, true);
+        scope.$watch('itemChecked', scope.onCheckValueChanged, true);
 
         // Watch value property
-        scope.$watch(function(){
-          return scope.value;
-        }, scope.onValueChanged, true);
+        scope.$watch('value', scope.onValueChanged, true);
 
         // Watch items property
-        scope.$watch(function(){
-          return scope.items;
-        }, scope.fetchCheckedItems, true);
+        scope.$watch('items', scope.fetchCheckedItems, true);
 
         // Watch defaultValue property
-        scope.$watch(function(){
-          return scope.defaultValue;
-        }, scope.fetchCheckedDefaultItems, true);
+        scope.$watch('defaultValue', scope.fetchCheckedDefaultItems, true);
       }
     };
   }]);
