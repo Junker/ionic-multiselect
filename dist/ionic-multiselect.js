@@ -115,6 +115,8 @@ angular.module("ionic-multiselect", [])
       },
       //Conected directive
       link: function(scope, element, attrs) {
+        scope.form = {};
+
         // Header usado en ion-header-bar
         scope.headerText = attrs.headerText || '';
         // Text displayed on label
@@ -132,6 +134,11 @@ angular.module("ionic-multiselect", [])
         scope.modalAnimation = attrs.modalAnimation;
         // Note properties
         scope.noteText = attrs.noteText || "";
+
+        //search
+        scope.hasSearch = attrs.hasSearch || false;
+        scope.searchPlaceholder = attrs.searchPlaceholder || 'Search';
+        scope.form.searchValue = '';
 
         //Init modal with the items
         if (scope.modalTemplateUrl) {

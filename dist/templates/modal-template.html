@@ -4,10 +4,17 @@
     <h1 class="title">{{headerText}}</h1>
     <button class="button button-positive button-icon ion-checkmark" ng-click="validate()" />
   </ion-header-bar>
+  <div class="bar bar-positive bar-subheader item-input-inset" ng-if="hasSearch">
+    <div class="item-input-wrapper">
+		  <i class="icon ion-ios-search placeholder-icon"></i>
+		  <input type="search" placeholder="{{ ::searchPlaceholder }}" ng-model="form.searchValue">
+		  <i class="icon ion-close-circled placeholder-icon" ng-click="form.searchValue = null"></i>
+	  </div>
+  </div>
 
-  <ion-content>
+  <ion-content class="has-header" ng-class="{'has-subheader': hasSearch}">
     <ion-list>
-      <ion-item class="item-checkbox" ng-repeat="item in items">
+      <ion-item class="item-checkbox" ng-repeat="item in items | filter:form.searchValue">
         <label class="checkbox">
           <input type="checkbox" ng-checked="item.checked" ng-model="item.checked">
         </label>
@@ -15,7 +22,7 @@
           {{ item | translateItem:this }}
         </div>
         <div ng-if="!isTranslate">
-          {{ $eval('item.' + textProperty) }} 
+          {{ $eval('item.' + textProperty) }}
         </div>
       </ion-item>
     </ion-list>

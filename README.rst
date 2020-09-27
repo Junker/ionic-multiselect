@@ -127,6 +127,11 @@ Attributes
     Type: Array
 	A list of values (from the value-property) that is default to the select
 
+12. has-search
+
+    Type: Boolean
+	Enable search field
+	
 Example
 -------
 
